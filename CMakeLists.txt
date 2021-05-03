@@ -12,6 +12,7 @@ project(MidiKraft-Korg-DW8000)
 set(Sources
 	KorgDW8000.cpp KorgDW8000.h
 	#KorgDW8000_BCR2000.cpp KorgDW8000_BCR2000.h
+	KorgDW8000_ElectraOne.cpp KorgDW8000_ElectraOne.h
 	KorgDW8000Parameter.cpp KorgDW8000Parameter.h
 	KorgDW8000Patch.cpp KorgDW8000Patch.h
 	README.md
@@ -24,7 +25,7 @@ target_include_directories(midikraft-korg-dw8000 PUBLIC ${CMAKE_CURRENT_LIST_DIR
 if(WIN32)
 	target_link_directories(midikraft-korg-dw8000 PUBLIC "${icu_SOURCE_DIR}/lib64")
 endif()
-target_link_libraries(midikraft-korg-dw8000 juce-utils midikraft-base ${APPLE_BOOST})
+target_link_libraries(midikraft-korg-dw8000 juce-utils midikraft-base midikraft-electra-one nlohmann_json::nlohmann_json ${APPLE_BOOST})
 
 # Pedantic about warnings
 if (MSVC)
