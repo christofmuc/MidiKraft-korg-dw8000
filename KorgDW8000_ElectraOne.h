@@ -15,8 +15,8 @@ namespace midikraft {
 
 	class KorgDW8000ElectraOneParameter : public ElectraOneParameter {
 	public:
-		KorgDW8000ElectraOneParameter(ElectraOneControlType controlType, int num, KorgDW8000Parameter::Parameter parameter) 
-			: ElectraOneParameter(controlType, KorgDW8000Parameter::findParameter(parameter)->name(), num), param_(parameter) {
+		KorgDW8000ElectraOneParameter(std::string const &groupName, int num, KorgDW8000Parameter::Parameter parameter) 
+			: ElectraOneParameter(groupName, KorgDW8000Parameter::findParameter(parameter)->name(), num), param_(parameter) {
 		}
 
 		virtual ElectraOneColor color() const override {
@@ -26,6 +26,7 @@ namespace midikraft {
 		virtual std::shared_ptr<SynthParameterDefinition> param() const override {
 			return KorgDW8000Parameter::findParameter(param_);
 		}
+
 
 	private:
 		KorgDW8000Parameter::Parameter param_;
