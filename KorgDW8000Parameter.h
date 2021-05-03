@@ -10,7 +10,7 @@
 
 namespace midikraft {
 
-	class KorgDW8000Parameter : public SynthParameterDefinition, public SynthIntParameterCapability {
+	class KorgDW8000Parameter : public SynthParameterDefinition, public SynthIntParameterCapability, public SynthLookupParameterCapability {
 	public:
 		typedef std::map<int, std::string> TValueLookup;
 
@@ -89,8 +89,11 @@ namespace midikraft {
 		virtual bool valueInPatch(DataFile const &patch, int &outValue) const override;
 		virtual void setInPatch(DataFile &patch, int value) const override;
 
-		// old
-		std::string valueAsText(int value) const;
+		// SynthLookupParameterCapability
+		virtual std::string valueAsText(int value) const;
+
+		// DW8000 specific, needs to get a capability because this is really the sysex parameter number
+		int paramIndex() const { return paramIndex_;  }
 		
 	private:
 		Parameter paramIndex_; // In the DW8000, this is really a list of 51 consecutive parameter bytes, no lookup necessary

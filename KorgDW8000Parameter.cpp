@@ -35,7 +35,7 @@ namespace midikraft {
 
 	SynthParameterDefinition::ParamType KorgDW8000Parameter::type() const
 	{
-		return SynthParameterDefinition::ParamType::INT;
+		return valueLookup_.empty() ? SynthParameterDefinition::ParamType::INT : SynthParameterDefinition::ParamType::LOOKUP;
 	}
 
 	std::string KorgDW8000Parameter::name() const
